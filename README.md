@@ -41,6 +41,9 @@ That’s where **UnZone** was born — a mental wellness platform designed to he
 > Crafted to feel gentle and inspiring, our UI makes vulnerability feel natural and growth feel exciting.
 
 ---
+##Try Me
+[Try Me](https://unzone.replit.app/)
+
 
 ## 🛠 Tech Stack
 
@@ -76,6 +79,7 @@ That’s where **UnZone** was born — a mental wellness platform designed to he
 - [Java](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) 11+
 - [Firebase Account](https://firebase.google.com/)
 - [Google Gemini API Key](https://aistudio.google.com/app)
+
 
 ### 📦 Installation
 
