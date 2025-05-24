@@ -18,32 +18,81 @@ export function EnhancedWishPond({ isOpen, onClose, userCoins, onCoinsChanged }:
   const [showGlow, setShowGlow] = useState(false);
 
   const playSplashSound = () => {
-    // Create splash sound using Web Audio API
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Create a realistic water splash sound
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    const filter = audioContext.createBiquadFilter();
-    
-    oscillator.connect(filter);
-    filter.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    // Configure splash sound parameters
-    oscillator.type = 'pink';
-    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.3);
-    
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(800, audioContext.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.4);
-    
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.5);
+    try {
+      // Create loud, realistic water splash sound
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      
+      // Create multiple layers for realistic splash
+      const createSplashLayer = (freq: number, duration: number, volume: number, delay: number = 0) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        const filter = audioContext.createBiquadFilter();
+        
+        oscillator.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // Use sawtooth for harsh water impact
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + delay);
+        oscillator.frequency.exponentialRampToValueAtTime(freq * 0.3, audioContext.currentTime + delay + duration);
+        
+        // Aggressive low-pass filter for water effect
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(2000, audioContext.currentTime + delay);
+        filter.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + delay + duration);
+        filter.Q.setValueAtTime(8, audioContext.currentTime + delay);
+        
+        // Loud, punchy volume with quick decay
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime + delay);
+        gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + delay + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + delay + duration);
+        
+        oscillator.start(audioContext.currentTime + delay);
+        oscillator.stop(audioContext.currentTime + delay + duration);
+      };
+      
+      // Layer 1: Initial impact (loud and sharp)
+      createSplashLayer(800, 0.2, 0.8, 0);
+      
+      // Layer 2: Water bubbles and splash
+      createSplashLayer(400, 0.4, 0.6, 0.05);
+      
+      // Layer 3: Ripple effects
+      createSplashLayer(200, 0.6, 0.4, 0.1);
+      
+      // Add white noise for realistic water texture
+      const bufferSize = audioContext.sampleRate * 0.3;
+      const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      
+      const whiteNoise = audioContext.createBufferSource();
+      const noiseGain = audioContext.createGain();
+      const noiseFilter = audioContext.createBiquadFilter();
+      
+      whiteNoise.buffer = noiseBuffer;
+      whiteNoise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(audioContext.destination);
+      
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.setValueAtTime(1500, audioContext.currentTime);
+      noiseFilter.Q.setValueAtTime(5, audioContext.currentTime);
+      
+      noiseGain.gain.setValueAtTime(0, audioContext.currentTime);
+      noiseGain.gain.linearRampToValueAtTime(0.7, audioContext.currentTime + 0.01);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+      
+      whiteNoise.start(audioContext.currentTime);
+      whiteNoise.stop(audioContext.currentTime + 0.3);
+      
+    } catch (error) {
+      console.log('Audio not available');
+    }
   };
 
   const makeWish = () => {
