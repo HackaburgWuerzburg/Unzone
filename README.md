@@ -87,7 +87,7 @@ Install dependencies
 
 
    ```bash
-npm install
+   npm install
 
 
 Configure environment
@@ -96,5 +96,5 @@ Create a .env file and include your Firebase credentials and Gemini API key.
 
 Run the development server
 
-```bash
-npm run dev
+  ```bash
+  npm run dev
