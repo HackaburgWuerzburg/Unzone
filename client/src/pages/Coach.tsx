@@ -48,7 +48,7 @@ export function Coach({ onBack }: CoachProps = {}) {
   };
 
   return (
-    <div className="h-full flex flex-col" style={{ background: 'linear-gradient(to bottom, #C4E8C2, #AECFA4)' }}>
+    <div className="h-screen flex flex-col" style={{ background: 'linear-gradient(to bottom, #C4E8C2, #AECFA4)' }}>
       {/* Header */}
       <div className="bg-gradient-to-r from-[#46A094] to-[#6BBD99] p-6 text-white relative">
         <Button
@@ -108,7 +108,7 @@ export function Coach({ onBack }: CoachProps = {}) {
       </div>
 
       {/* Quick Prompts */}
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-4 border-t border-gray-200 bg-white pb-20">
         <div className="mb-4">
           <p className="text-sm text-gray-600 mb-2">Quick topics to explore:</p>
           <div className="flex flex-wrap gap-2">
