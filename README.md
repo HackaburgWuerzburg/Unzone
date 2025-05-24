@@ -86,7 +86,7 @@ That’s where **UnZone** was born — a mental wellness platform designed to he
 Install dependencies
 
 
-'''bash
+   ```bash
 npm install
 
 
@@ -96,5 +96,5 @@ Create a .env file and include your Firebase credentials and Gemini API key.
 
 Run the development server
 
-'''bash
+```bash
 npm run dev
