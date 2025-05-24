@@ -3,7 +3,7 @@ import { NewBottomNavigation } from "./NewBottomNavigation";
 import { Home } from "@/pages/Home";
 import { Garden } from "@/pages/Garden";
 import { ProgressPage } from "@/pages/Progress";
-import { Community } from "@/pages/Community";
+import { NewCommunity } from "@/pages/NewCommunity";
 import { Coach } from "@/pages/Coach";
 
 export function MainApp() {
@@ -22,7 +22,7 @@ export function MainApp() {
       case "garden":
         return <Garden onBack={handleBack} />;
       case "community":
-        return <Community onBack={handleBack} />;
+        return <NewCommunity onBack={handleBack} />;
       case "coach":
         return <Coach onBack={handleBack} />;
       default:
