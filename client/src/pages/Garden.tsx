@@ -32,7 +32,7 @@ export function Garden({ onBack }: GardenProps = {}) {
   }
 
   return (
-    <div className="h-full relative overflow-y-auto">
+    <div className="min-h-screen relative overflow-y-auto">
       {/* Sophisticated Garden Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-green-800 via-green-700 to-green-900">
         {/* Dense Forest Background */}

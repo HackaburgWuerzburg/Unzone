@@ -48,7 +48,7 @@ export function Coach({ onBack }: CoachProps = {}) {
   };
 
   return (
-    <div className="h-screen flex flex-col" style={{ background: 'linear-gradient(to bottom, #C4E8C2, #AECFA4)' }}>
+    <div className="min-h-screen flex flex-col pb-20" style={{ background: 'linear-gradient(to bottom, #C4E8C2, #AECFA4)' }}>
       {/* Header */}
       <div className="bg-gradient-to-r from-[#46A094] to-[#6BBD99] p-6 text-white relative">
         <Button
