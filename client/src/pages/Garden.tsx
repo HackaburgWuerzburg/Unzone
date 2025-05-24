@@ -180,11 +180,19 @@ export function Garden({ onBack }: GardenProps = {}) {
         </div>
       </Button>
       
-      {/* Wish Pond Modal */}
-      <WishPond 
+      {/* Enhanced Wish Pond Modal */}
+      <EnhancedWishPond 
         isOpen={showWishPond} 
-        onClose={() => setShowWishPond(false)}
-        userCoins={user.coins || 0}
+        onClose={() => setShowWishPond(false)} 
+        userCoins={user?.coins || 0}
+        onCoinsChanged={async (newCoins) => {
+          try {
+            await api.updateUser(user.id, { coins: newCoins });
+            window.location.reload();
+          } catch (error) {
+            console.error('Error updating coins:', error);
+          }
+        }}
       />
     </div>
   );
