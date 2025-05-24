@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
-import { WishPond } from "@/components/WishPond";
+import { EnhancedWishPond } from "@/components/EnhancedWishPond";
+import { api } from "@/lib/api";
 
 interface GardenProps {
   onBack?: () => void;

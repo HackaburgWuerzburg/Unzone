@@ -8,6 +8,34 @@ export interface CoachResponse {
 }
 
 export class GeminiCoach {
+  private responses = {
+    completed: [
+      "Amazing work! You absolutely crushed that challenge! 🎉",
+      "Incredible courage shown today! You're unstoppable! ⭐",
+      "Wow! That took real bravery. So proud of you! 💪",
+      "You did it! Another step outside your comfort zone! 🚀",
+      "Fantastic job! Your growth mindset is inspiring! ✨"
+    ],
+    skipped: [
+      "No worries at all! Self-awareness is actually wisdom.",
+      "That's totally okay! Timing matters in growth.",
+      "I understand completely. You know yourself best.",
+      "Sometimes stepping back is the right move.",
+      "All good! Every day brings new opportunities."
+    ],
+    encouragements: [
+      "Every comfort zone exit is a victory!",
+      "You're becoming stronger with each challenge!",
+      "Growth happens one brave step at a time!",
+      "Your courage inspires everyone around you!",
+      "Small steps lead to big transformations!"
+    ]
+  };
+
+  private getRandomResponse(array: string[]): string {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
   private async callGemini(prompt: string): Promise<string> {
     try {
       const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
