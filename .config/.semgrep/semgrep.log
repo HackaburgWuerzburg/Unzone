@@ -1,0 +1,100 @@
+2025-05-24 10:01:23,707 - semgrep.run_scan - DEBUG - semgrep version 1.2.0
+2025-05-24 10:01:23,714 - semgrep.git - DEBUG - Failed to get project url from 'git ls-remote': Command failed with exit code: 128
+-----
+Command failed with output:
+fatal: No remote configured to list refs from.
+
+
+Failed to run 'git ls-remote --get-url'. Possible reasons:
+
+- the git binary is not available
+- the current working directory is not a git repository
+- the baseline commit is not a parent of the current commit
+    (if you are running through semgrep-app, check if you are setting `SEMGREP_BRANCH` or `SEMGREP_BASELINE_COMMIT` properly)
+- the current working directory is not marked as safe
+    (fix with `git config --global --add safe.directory $(pwd)`)
+
+Try running the command yourself to debug the issue.
+2025-05-24 10:01:23,715 - semgrep.config_resolver - DEBUG - Loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-24 10:01:23,841 - semgrep.config_resolver - DEBUG - Done loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-24 10:01:23,850 - semgrep.config_resolver - DEBUG - Saving rules to /tmp/semgrep-f03k23mt.rules
+2025-05-24 10:01:24,060 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEIYJ6uuw/semgrep/bin/semgrep-core-proprietary'.
+2025-05-24 10:01:24,603 - semgrep.rule_lang - DEBUG - semgrep-core validation response: valid=True
+2025-05-24 10:01:24,604 - semgrep.rule_lang - DEBUG - semgrep-core validation succeeded
+2025-05-24 10:01:24,604 - semgrep.rule_lang - DEBUG - RPC validation succeeded
+2025-05-24 10:01:24,607 - semgrep.config_resolver - DEBUG - loaded 1 configs in 0.892794132232666
+2025-05-24 10:01:24,685 - semgrep.run_scan - VERBOSE - running 711 rules from 1 config /home/runner/workspace/.config/.semgrep/semgrep_rules.json_0
+2025-05-24 10:01:24,686 - semgrep.run_scan - VERBOSE - No .semgrepignore found. Using default .semgrepignore rules. See the docs for the list of default ignores: https://semgrep.dev/docs/cli-usage/#ignore-files
+2025-05-24 10:01:24,687 - semgrep.run_scan - VERBOSE - Rules:
+2025-05-24 10:01:24,687 - semgrep.run_scan - VERBOSE - <SKIPPED DATA (too many entries; use --max-log-list-entries)>
+2025-05-24 10:01:25,253 - semgrep.core_runner - DEBUG - Passing whole rules directly to semgrep_core
+2025-05-24 10:01:25,410 - semgrep.core_runner - DEBUG - Running Semgrep engine with command:
+2025-05-24 10:01:25,410 - semgrep.core_runner - DEBUG - /tmp/_MEIYJ6uuw/semgrep/bin/opengrep-core -json -rules /tmp/tmp95f93qya.json -j 8 -targets /tmp/tmp2kgzb24u -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+2025-05-24 10:01:28,490 - semgrep.core_runner - DEBUG - --- semgrep-core stderr ---
+[00.08][[34mINFO[0m]: Executed as: /tmp/_MEIYJ6uuw/semgrep/bin/opengrep-core -json -rules /tmp/tmp95f93qya.json -j 8 -targets /tmp/tmp2kgzb24u -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+[00.08][[34mINFO[0m]: Version: 1.2.0
+[00.08][[34mINFO[0m]: Parsing rules in /tmp/tmp95f93qya.json
+[00.55][[34mINFO[0m]: scan: processing 314 files (skipping 0), with 454 rules (skipping 0 )
+[03.03][[34mINFO[0m]: Custom ignore pattern: None
+[03.03][[34mINFO[0m]: Custom ignore pattern: None
+--- end semgrep-core stderr ---
+2025-05-24 10:01:28,496 - semgrep.rule_match - DEBUG - match_key = ('', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0ee74fd49637bebe183eca7188dbde26e386314e62cc2e7ba1ee60b377b638243fcd84e6c6fa04886198ccacfa6a711bfbcc61a28f9ddc913d5b3c53083cbc90_0
+2025-05-24 10:01:28,497 - semgrep.rule_match - DEBUG - match_key = (' rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / > <script  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = edf4cf5833a648dde6e6d1cc551883bab133a6d2141c5f77ad71dc54899feebc7256b4468a81dda4367dc62880432ebbb9bc83539a7f9f88a5e8a704b45e4f33_0
+2025-05-24 10:01:28,497 - semgrep.rule_match - DEBUG - match_key = (' rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / > <script  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = edf4cf5833a648dde6e6d1cc551883bab133a6d2141c5f77ad71dc54899feebc7256b4468a81dda4367dc62880432ebbb9bc83539a7f9f88a5e8a704b45e4f33_0
+2025-05-24 10:01:28,498 - semgrep.rule_match - DEBUG - match_key = (' rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / > <script  rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3ClinearGradient id=\'bgGrad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2322C55E\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2316A34A\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23bgGrad)\'/%3E%3Cg transform=\'translate(20,20)\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'25\' fill=\'none\' stroke=\'%23F5F5DC\' stroke-width=\'4\' stroke-dasharray=\'8,4\' opacity=\'0.9\'/%3E%3Cpath d=\'M45 25 L55 30 L50 35 L55 40 L45 35 L40 45 L35 35 L25 40 L30 35 L25 30 L35 25 L40 15 Z\' fill=\'%23F5F5DC\' opacity=\'0.9\'/%3E%3C/g%3E%3C/svg%3E" / >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = edf4cf5833a648dde6e6d1cc551883bab133a6d2141c5f77ad71dc54899feebc7256b4468a81dda4367dc62880432ebbb9bc83539a7f9f88a5e8a704b45e4f33_0
+2025-05-24 10:01:28,499 - semgrep.rule_match - DEBUG - match_key = ('', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0ee74fd49637bebe183eca7188dbde26e386314e62cc2e7ba1ee60b377b638243fcd84e6c6fa04886198ccacfa6a711bfbcc61a28f9ddc913d5b3c53083cbc90_0
+2025-05-24 10:01:28,499 - semgrep.rule_match - DEBUG - match_key = (' type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" > <script  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0728b64e224596592d04447ba8a642ff94e1fb9fcc07be26d49dc7e7f6898e638ad16ffcaca086932c58f4c6400fe32603323afef02cf9bfebcb0e4a53562a40_0
+2025-05-24 10:01:28,500 - semgrep.rule_match - DEBUG - match_key = (' type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" > <script  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0728b64e224596592d04447ba8a642ff94e1fb9fcc07be26d49dc7e7f6898e638ad16ffcaca086932c58f4c6400fe32603323afef02cf9bfebcb0e4a53562a40_0
+2025-05-24 10:01:28,500 - semgrep.rule_match - DEBUG - match_key = (' type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" > <script  type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0728b64e224596592d04447ba8a642ff94e1fb9fcc07be26d49dc7e7f6898e638ad16ffcaca086932c58f4c6400fe32603323afef02cf9bfebcb0e4a53562a40_0
+2025-05-24 10:01:28,502 - semgrep.core_runner - DEBUG - semgrep ran in 0:00:03.249451 on 112 files
+2025-05-24 10:01:28,503 - semgrep.core_runner - DEBUG - findings summary: 2 warning, 0 error, 0 info
+2025-05-24 10:01:28,506 - semgrep.app.auth - DEBUG - Getting API token from settings file
+2025-05-24 10:01:28,506 - semgrep.app.auth - DEBUG - No API token found in settings file
+2025-05-24 10:01:28,506 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEIYJ6uuw/semgrep/bin/semgrep-core-proprietary'.
+2025-05-24 10:01:28,611 - semgrep.output - VERBOSE - 
+========================================
+Files skipped:
+========================================
+
+  Always skipped by Opengrep:
+
+   • <none>
+
+  Skipped by .gitignore:
+  (Disable by passing --no-git-ignore)
+
+   • <all files not listed by `git ls-files` were skipped>
+
+  Skipped by .semgrepignore:
+  - https://semgrep.dev/docs/ignoring-files-folders-code/#understand-semgrep-defaults
+
+   • <none>
+
+  Skipped by --include patterns:
+
+   • <none>
+
+  Skipped by --exclude patterns:
+
+   • <none>
+
+  Files skipped due to insufficient read permissions:
+
+   • <none>
+
+  Skipped by limiting to files smaller than 1000000 bytes:
+  (Adjust with the --max-target-bytes flag)
+
+   • <none>
+
+  Partially analyzed due to parsing or internal Opengrep errors
+
+   • tailwind.config.ts (1 lines skipped)
+
+2025-05-24 10:01:28,612 - semgrep.output - INFO - Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+  Partially scanned: 1 files only partially analyzed due to parsing or internal Opengrep errors
+
+Ran 435 rules on 112 files: 2 findings.
+2025-05-24 10:01:28,612 - semgrep.app.version - DEBUG - Version cache does not exist
+2025-05-24 10:01:28,627 - semgrep.metrics - VERBOSE - Not sending pseudonymous metrics since metrics are configured to OFF and registry usage is False
