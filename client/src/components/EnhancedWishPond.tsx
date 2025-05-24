@@ -17,6 +17,35 @@ export function EnhancedWishPond({ isOpen, onClose, userCoins, onCoinsChanged }:
   const [showSplash, setShowSplash] = useState(false);
   const [showGlow, setShowGlow] = useState(false);
 
+  const playSplashSound = () => {
+    // Create splash sound using Web Audio API
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Create a realistic water splash sound
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    
+    oscillator.connect(filter);
+    filter.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    // Configure splash sound parameters
+    oscillator.type = 'pink';
+    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.3);
+    
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(800, audioContext.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.4);
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.5);
+  };
+
   const makeWish = () => {
     if (userCoins <= 0 || !wish.trim()) return;
     
@@ -24,6 +53,13 @@ export function EnhancedWishPond({ isOpen, onClose, userCoins, onCoinsChanged }:
     
     // Coin toss animation sequence
     setTimeout(() => {
+      // Play splash sound effect
+      try {
+        playSplashSound();
+      } catch (error) {
+        console.log('Audio not available');
+      }
+      
       setShowSplash(true);
       setShowGlow(true);
       

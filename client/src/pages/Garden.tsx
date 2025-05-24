@@ -83,8 +83,8 @@ export function Garden({ onBack }: GardenProps = {}) {
               }`}
             >
               <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-                <div className="w-12 h-12 rounded-full bg-white/10 mb-4 flex items-center justify-center">
-                  <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${plot.color}`}></div>
+                <div className="w-12 h-12 rounded-full bg-white/10 mb-4 flex items-center justify-center transition-all duration-300 hover:scale-125 hover:rotate-12 hover:shadow-lg">
+                  <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${plot.color} transition-all duration-300 hover:scale-110 filter drop-shadow-lg`}></div>
                 </div>
                 <p className={`text-sm text-center mb-3 font-medium ${
                   plot.type === "empty"
@@ -109,20 +109,24 @@ export function Garden({ onBack }: GardenProps = {}) {
           ))}
         </div>
         
-        {/* Large Sophisticated Wish Pond */}
+        {/* Interactive 3D Wish Pond */}
         <div className="flex justify-center mb-8">
           <div className="relative">
             <div 
-              className="w-72 h-48 rounded-full bg-gradient-to-br from-blue-600 via-teal-600 to-cyan-700 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300 border-4 border-white/20"
+              className="w-72 h-48 rounded-full bg-gradient-to-br from-blue-600 via-teal-600 to-cyan-700 shadow-2xl cursor-pointer transition-all duration-500 border-4 border-white/20 transform-gpu hover:scale-110 hover:rotate-2 hover:shadow-3xl hover:border-white/40"
               onClick={() => setShowWishPond(true)}
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px'
+              }}
             >
               {/* Realistic Water Surface */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-blue-900/30 rounded-full"></div>
               <div className="absolute inset-2 bg-gradient-to-br from-transparent via-white/10 to-transparent rounded-full animate-pulse"></div>
               
-              {/* Minimal, elegant floating elements */}
-              <div className="absolute top-6 left-8 w-2 h-2 bg-green-400 rounded-full animate-float opacity-70" style={{ animationDelay: "0s" }}></div>
-              <div className="absolute bottom-8 right-12 w-1 h-1 bg-green-300 rounded-full animate-float opacity-60" style={{ animationDelay: "2s" }}></div>
+              {/* Interactive floating elements */}
+              <div className="absolute top-6 left-8 w-2 h-2 bg-green-400 rounded-full animate-float opacity-70 transition-all duration-300 hover:scale-150 hover:bg-green-300" style={{ animationDelay: "0s" }}></div>
+              <div className="absolute bottom-8 right-12 w-1 h-1 bg-green-300 rounded-full animate-float opacity-60 transition-all duration-300 hover:scale-200 hover:bg-green-200" style={{ animationDelay: "2s" }}></div>
               
               {/* Ripple effects */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-white/20 rounded-full animate-ping opacity-30"></div>
